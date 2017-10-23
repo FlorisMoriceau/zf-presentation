@@ -1,0 +1,14 @@
+.maestro
+npm-debug.log
+.idea
+.buildpath
+.project
+.settings
+.vscode
+.profile
+.theme
+.module
+sites/default/files/*
+phpcs.md
+eslint.md
+.DS_Store
