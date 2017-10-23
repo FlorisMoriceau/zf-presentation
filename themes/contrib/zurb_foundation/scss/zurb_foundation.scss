@@ -39,12 +39,16 @@
 
 // Offset the top bar if the Navbar (toolbar) is present.
 
-body.toolbar-fixed .sticky.fixed .top-bar {
+body.toolbar-fixed .sticky.is-stuck .top-bar {
     margin-top: 39px;
 }
 
-body.toolbar-fixed.toolbar-horizontal.toolbar-tray-open .sticky.fixed .top-bar {
+body.toolbar-fixed.toolbar-horizontal.toolbar-tray-open .sticky.is-stuck .top-bar {
     margin-top: 78px;
+}
+
+body.toolbar-fixed .sticky.is-stuck.is-at-top {
+    margin-top: 0 !important;
 }
 
 // Removes core arrow image from menu items.
@@ -54,6 +58,7 @@ body.toolbar-fixed.toolbar-horizontal.toolbar-tray-open .sticky.fixed .top-bar {
         list-style: none;
     }
 }
+
 
 // Style the search form, if embedded in the Top Bar.
 
@@ -75,4 +80,3 @@ body.toolbar-fixed.toolbar-horizontal.toolbar-tray-open .sticky.fixed .top-bar {
         text-align: left;
     }
 }
-

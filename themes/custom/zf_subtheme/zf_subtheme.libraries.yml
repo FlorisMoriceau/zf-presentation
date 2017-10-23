@@ -1,0 +1,7 @@
+global:
+  version: VERSION
+  css:
+    base:
+      css/zf_subtheme.css: {}
+  js:
+    js/zf_subtheme.js: {}

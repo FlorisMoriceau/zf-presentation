@@ -1,5 +1,6 @@
 <?php
 /**
+ * @file
  * Override drupal core messages with Zurb Foundation alert-box messages.
  * Customize the colors within the _settings.scss file.
  *
@@ -23,10 +24,10 @@ function zurb_foundation_status_messages($variables) {
 
   foreach ($display as $type => $messages) {
     if (isset($status_mapping[$type])) {
-      $output .= "<div data-alert class=\"alert-box radius $status_mapping[$type]\">\n";
+      $output .= "<div class=\"zurb-foundation-callout callout $status_mapping[$type]\" data-closable=\"fade-out\">\n";
     }
     else {
-      $output .= "<div data-alert class=\"alert-box radius\">\n";
+      $output .= "<div class=\"zurb-foundation-callout callout\" data-closable=\"fade-out\">\n";
     }
 
     if (!empty($status_heading[$type])) {
@@ -43,7 +44,7 @@ function zurb_foundation_status_messages($variables) {
     }
 
     if(!theme_get_setting('zurb_foundation_status_in_reveal')) {
-      $output .= '<a href="#" class="close">&times;</a>';
+      $output .= '<button class="close-button" aria-label="Dismiss alert" type="button" data-close><span aria-hidden="true">&times;</span></button>';
     }
 
     $output .= "</div>\n";
@@ -51,8 +52,8 @@ function zurb_foundation_status_messages($variables) {
 
   // Enable Modal Status Messages
   if ($output != '' && theme_get_setting('zurb_foundation_status_in_reveal')) {
-    $output = '<div id="status-messages" data-reveal class="reveal-modal expand" role="dialog">'. $output;
-    $output .= '<a class="close-reveal-modal" aria-label="Close">&#215;</a>';
+    $output = '<div id="status-messages" data-reveal class="reveal" role="dialog" data-animation-in="fade-in" data-animation-out="fade-out">'. $output;
+    $output .= '<button class="close-button" aria-label="Dismiss alert" type="button" data-close><span aria-hidden="true">&times;</span></button>';
     $output .= "</div>\n";
     // Add a library which reveals the modal on load.
     $library = 'zurb_foundation/status_in_reveal';
@@ -67,10 +68,11 @@ function zurb_foundation_status_messages($variables) {
     '#attached' => array(
       'library' => array(
         $library
-      )
-    )
+      ),
+    ),
+    '#allowed_tags' => ['div', 'button', 'a', 'span', 'h2', 'p'],
   );
-  $output = drupal_render($output);
+  $output = render($output);
 
   return $output;
 }
